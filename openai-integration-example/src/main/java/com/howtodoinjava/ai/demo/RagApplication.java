@@ -37,7 +37,7 @@ public class RagApplication {
     String ask(String question);
   }
 
-  @Bean("ragApplicationRunner")
+  //@Bean("ragApplicationRunner")
   ApplicationRunner applicationRunner() {
     return args -> {
 
