@@ -29,7 +29,7 @@ public class App {
   }
 
   //Uncomment to run
-  @Bean(name = "mainApplicationRunner")
+  //@Bean(name = "mainApplicationRunner")
   ApplicationRunner applicationRunner(ChatAssistant chatAssistant,
                                       ChatLanguageModel chatLanguageModel,
                                       StreamingChatLanguageModel streamingChatLanguageModel) {

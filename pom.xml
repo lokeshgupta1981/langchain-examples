@@ -17,6 +17,7 @@
   <description>Demo AI projects built with Spring Boot</description>
   <modules>
     <module>openai-integration-example</module>
+    <module>vertex-ai-integration-example</module>
   </modules>
 
   <properties>

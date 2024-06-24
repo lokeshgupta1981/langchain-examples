@@ -33,14 +33,15 @@ public class RagApplication {
   @Value("${OPENAI_API_KEY}")
   private String OPENAI_API_KEY;
 
-  interface LlmExpert {
+  interface LlmAgent {
     String ask(String question);
   }
 
-  //@Bean("ragApplicationRunner")
+  @Bean("ragApplicationRunner")
   ApplicationRunner applicationRunner() {
     return args -> {
 
+      // 1. Document ingestion
       ApachePdfBoxDocumentParser pdfParser = new ApachePdfBoxDocumentParser();
       Document document = pdfParser.parse(new FileInputStream(
           "c:/temp/spring-boot-reference-part-2.pdf"));
@@ -62,6 +63,7 @@ public class RagApplication {
           .build();
       storeIngestor.ingest(document);
 
+      // 2. Asking questions
       ChatLanguageModel model = OpenAiChatModel.builder()
           .apiKey(OPENAI_API_KEY)
           .modelName(OpenAiChatModelName.GPT_3_5_TURBO)
@@ -72,7 +74,7 @@ public class RagApplication {
       EmbeddingStoreContentRetriever retriever =
           new EmbeddingStoreContentRetriever(embeddingStore, embeddingModel);
 
-      LlmExpert expert = AiServices.builder(LlmExpert.class)
+      LlmAgent llmAgent = AiServices.builder(LlmAgent.class)
           .chatLanguageModel(model)
           .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
           .contentRetriever(retriever)
@@ -82,7 +84,7 @@ public class RagApplication {
           "Explain Spring Boot?",
           "Provide default settings for Spring Boot DataSource"
       ).forEach(query ->
-          System.out.printf("%n=== %s === %n%n %s %n%n", query, expert.ask(query)));
+          System.out.printf("%n=== %s === %n%n %s %n%n", query, llmAgent.ask(query)));
     };
   }
 }

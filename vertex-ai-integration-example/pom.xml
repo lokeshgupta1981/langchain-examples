@@ -8,10 +8,10 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>openai-integration-example</artifactId>
+  <artifactId>vertex-ai-integration-example</artifactId>
   <packaging>jar</packaging>
 
-  <name>openai-integration-example</name>
+  <name>vertex-ai-integration-example</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -21,13 +21,18 @@
   <dependencies>
     <dependency>
       <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
-      <version>0.31.0</version>
+      <artifactId>langchain4j-vertex-ai</artifactId>
+      <version>0.30.0</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-vertex-ai-gemini</artifactId>
+      <version>0.30.0</version>
     </dependency>
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
-      <version>0.31.0</version>
+      <version>0.30.0</version>
     </dependency>
   </dependencies>
 </project>
